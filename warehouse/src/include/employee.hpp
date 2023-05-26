@@ -1,8 +1,11 @@
 #pragma once
 #include <string>
 
-class Employee
-{
+class Employee {
+    /**
+     * @brief 
+     * @param 
+     */
 private:
     std::string name;
     bool busy;
