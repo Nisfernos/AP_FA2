@@ -4,11 +4,10 @@
 #include <vector>
 
 class Warehouse {
-    private:
+    public:
         std::vector<Employee> Employees;
         std::vector<Shelf> Shelves;
 
-    public:
         Warehouse();
         void addEmployee(Employee employee);
         void addShelf(Shelf shelf);
