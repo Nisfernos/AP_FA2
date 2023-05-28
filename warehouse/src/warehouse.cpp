@@ -1,4 +1,5 @@
 #include "include/warehouse.hpp"
+#include <iostream>
 
 Warehouse::Warehouse() {
     /**
@@ -87,6 +88,7 @@ bool Warehouse::pickItems(std::string itemName, int itemCount) {
                 }
                 // If we have gathered all the items we need, we return true
                 if (itemCount == 0) {
+                    std::cout << "final: " << _pallet.getItemCount() << _pallet.getItemName() << std::endl; ///////////
                     return true;
                 }
             }

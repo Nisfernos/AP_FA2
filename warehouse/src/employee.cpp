@@ -1,5 +1,6 @@
 #include "include/employee.hpp"
 
+
 Employee::Employee(std::string name_, bool forkliftCertificate_) {
     /**
      * @brief Constructor of the employee class

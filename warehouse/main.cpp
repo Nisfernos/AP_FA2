@@ -44,7 +44,7 @@ int main() {
     Shelf shelf1 = Shelf();
     shelf1.pallets = {
         Pallet("Apple", 100, 20), 
-        Pallet("Banana", 100, 30), 
+        Pallet("BananaOwO", 100, 30), 
         Pallet("Lemon", 100, 40), 
         Pallet("Pear", 100, 10)
     };
@@ -208,16 +208,16 @@ int main() {
     // Pick items with enough stock                                         ///////Doesnt work
     std::cout << "Pick 15 bananas when there is enough stock." << std::endl;
     print_shelf(warehouse.shelves[0]);
-    std::cout << warehouse.pickItems("Banana", 15) << std::endl;
+    std::cout << warehouse.pickItems("BananaOwO", 14) << std::endl; /////////
+    std::cout << warehouse.shelves[0].pallets[2].getItemCount() << std::endl; /////////
     print_shelf(warehouse.shelves[0]);
     std::cout << std::endl;
 
     // Pick items with not enough stock
     std::cout << "Pick 45 lemons when there is not enough stock." << std::endl;
     print_shelf(warehouse.shelves[0]);
-    warehouse.pickItems("Lemon", 45);
+    std::cout << warehouse.pickItems("Lemon", 45) << std::endl;
     print_shelf(warehouse.shelves[0]);
     std::cout << std::endl;
-
 
 }
