@@ -277,3 +277,112 @@ TEST_CASE("Pick items from warehouse with items on 1 pallet, Warehouse::PickItem
     REQUIRE(warehouse.shelves[0].pallets[2].getItemCount() == 30);
     REQUIRE(warehouse.shelves[0].pallets[3].getItemCount() == 40);
 }
+
+TEST_CASE("Pick items from warehouse with items on multiple pallets on multiple shelves, Warehouse::PickItems") {
+    // Construct warehouse with 2 shelves with at least one common product
+    Warehouse warehouse = Warehouse();
+    Shelf shelf1 = Shelf();
+    shelf1.pallets = {
+        Pallet("Apple", 100, 10), 
+        Pallet("Banana", 100, 20), 
+        Pallet("Lemon", 100, 30), 
+        Pallet("Pear", 100, 40)
+    };
+    Shelf shelf2 = Shelf();
+    shelf2.pallets = {
+        Pallet("Apple", 100, 10), 
+        Pallet("Banana", 100, 20), 
+        Pallet("Apple", 100, 30), 
+        Pallet("Pear", 100, 40)
+    };
+
+    warehouse.addShelf(shelf1);
+    warehouse.addShelf(shelf2);
+
+    //Check if the shelves and pallets are implemented correctly
+    //They should be implemented correctly
+    REQUIRE(warehouse.shelves[0].pallets[0].getItemCount() == 10);
+    REQUIRE(warehouse.shelves[0].pallets[1].getItemCount() == 20);
+    REQUIRE(warehouse.shelves[0].pallets[2].getItemCount() == 30);
+    REQUIRE(warehouse.shelves[0].pallets[3].getItemCount() == 40);
+
+    REQUIRE(warehouse.shelves[1].pallets[0].getItemCount() == 10);
+    REQUIRE(warehouse.shelves[1].pallets[1].getItemCount() == 20);
+    REQUIRE(warehouse.shelves[1].pallets[2].getItemCount() == 30);
+    REQUIRE(warehouse.shelves[1].pallets[3].getItemCount() == 40);
+
+    // Take 55 apples from the warehouse
+    bool succesfull = warehouse.pickItems("Apple", 40);
+    // Should succeed
+    REQUIRE(succesfull);
+
+    // Check if the warehouse is updated correctly
+    int applestock = warehouse.shelves[0].pallets[0].getItemCount();
+    applestock += warehouse.shelves[1].pallets[0].getItemCount();
+    applestock += warehouse.shelves[1].pallets[2].getItemCount();
+    REQUIRE(applestock == 10);
+
+}
+
+TEST_CASE("Pick non-existent item, Warehouse::PickItems") {
+     // Construct warehouse with 4 different items on 1 shelf
+    Warehouse warehouse = Warehouse();
+    Shelf shelf1 = Shelf();
+    shelf1.pallets = {
+        Pallet("Apple", 100, 10), 
+        Pallet("Banana", 100, 20), 
+        Pallet("Lemon", 100, 30), 
+        Pallet("Pear", 100, 40)
+    };
+    warehouse.addShelf(shelf1);
+
+    //Check if the pallets are implemented correctly
+    //This shelf should be implemented correctly
+    REQUIRE(warehouse.shelves[0].pallets[0].getItemCount() == 10);
+    REQUIRE(warehouse.shelves[0].pallets[1].getItemCount() == 20);
+    REQUIRE(warehouse.shelves[0].pallets[2].getItemCount() == 30);
+    REQUIRE(warehouse.shelves[0].pallets[3].getItemCount() == 40);
+
+    // Take 10 peaches from the warehouse
+    bool succesfull = warehouse.pickItems("Peach", 10);
+    // Should fail
+    REQUIRE(!succesfull);
+
+    //Check if shelf is unchanged
+    REQUIRE(warehouse.shelves[0].pallets[0].getItemCount() == 10);
+    REQUIRE(warehouse.shelves[0].pallets[1].getItemCount() == 20);
+    REQUIRE(warehouse.shelves[0].pallets[2].getItemCount() == 30);
+    REQUIRE(warehouse.shelves[0].pallets[3].getItemCount() == 40);
+
+}
+
+TEST_CASE("Pick item when there is not enough stock, Warehouse::PickItems") {
+     // Construct warehouse with 4 different items on 1 shelf
+    Warehouse warehouse = Warehouse();
+    Shelf shelf1 = Shelf();
+    shelf1.pallets = {
+        Pallet("Apple", 100, 10), 
+        Pallet("Banana", 100, 20), 
+        Pallet("Lemon", 100, 30), 
+        Pallet("Pear", 100, 40)
+    };
+    warehouse.addShelf(shelf1);
+
+    //Check if the pallets are implemented correctly
+    //This shelf should be implemented correctly
+    REQUIRE(warehouse.shelves[0].pallets[0].getItemCount() == 10);
+    REQUIRE(warehouse.shelves[0].pallets[1].getItemCount() == 20);
+    REQUIRE(warehouse.shelves[0].pallets[2].getItemCount() == 30);
+    REQUIRE(warehouse.shelves[0].pallets[3].getItemCount() == 40);
+
+    // Take 10 peaches from the warehouse
+    bool succesfull = warehouse.pickItems("Apple", 11);
+    // Should fail
+    REQUIRE(!succesfull);
+
+    //Check if shelf is unchanged
+    REQUIRE(warehouse.shelves[0].pallets[0].getItemCount() == 10);
+    REQUIRE(warehouse.shelves[0].pallets[1].getItemCount() == 20);
+    REQUIRE(warehouse.shelves[0].pallets[2].getItemCount() == 30);
+    REQUIRE(warehouse.shelves[0].pallets[3].getItemCount() == 40);
+}
