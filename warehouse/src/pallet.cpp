@@ -49,8 +49,8 @@ bool Pallet::reallocateEmptyPallet(std::string itemName_, int itemCapacity_) {
      * @param itemCapacity_ This is the maximum amount of items the pallet can hold of the new item.
      */
     if (getItemCount() == 0) {
-        this->itemName = itemName;
-        this->itemCapacity = itemCapacity;
+        this->itemName = itemName_;
+        this->itemCapacity = itemCapacity_;
         return 1;
     }
     else {
