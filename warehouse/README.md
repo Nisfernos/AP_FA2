@@ -14,11 +14,33 @@ It also has main.cpp, and testWarehouse.cpp for testing the functionality of the
 4. Set "Launch target" to [main] or [test]
 5. Run the code from the "Makefile: project outline".
 
+## Files
+- folder src:
+    - folder include
+        - employee.hpp Header file for class Employee
+        - pallet.hpp Header file for class Pallet
+        - shelf.hpp Header file for class Shelf
+        - warehouse.hpp Header file for class Warehouse
+    - employee.cpp Employee class implementation file
+    - pallet.cpp Pallet class implementation file
+    - shelf.cpp Shelf class implementation file
+    - warehouse.cpp Warehouse class implementation file
+- folder test
+    - folder include
+        - catch.hpp: Makes the code testWarehouse.cpp work?
+    - test.cpp: Link between catch.hpp and testWarehouse.cpp?
+    - testWarehouse.cpp: Testing edge cases of the program
+- main.cpp: Shows that the program is working
+- Makefile: The makefile for building and running the main.cpp and test.cpp
+- README.md: Instructions and documentation of the project
+
+
+
 ## Credits
 Frank van Leijsen
 Studentnummer: 1843626
 Work: Everything
 
 Tristan de Bree helped on two points: 
--std::swap() in pallets.cpp (I had a,b = b,a, which doesn't work)
--reference & in the for loops in warehouse.cpp::pickItems() (without it, the pallets aren't actually changed)
+- std::swap() in pallets.cpp (I had a,b = b,a, which doesn't work)
+- reference & in the for loops in warehouse.cpp::pickItems() (without it, the pallets aren't actually changed)
