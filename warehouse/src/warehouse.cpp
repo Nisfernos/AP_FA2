@@ -1,5 +1,4 @@
 #include "include/warehouse.hpp"
-#include <iostream>
 
 Warehouse::Warehouse() {
     /**
@@ -78,8 +77,9 @@ bool Warehouse::pickItems(std::string itemName, int itemCount) {
     }
 
     // We loop again through all the pallets on the shelves in the warehouse
-    for (Shelf _shelf : this->shelves) {
-        for (Pallet _pallet : _shelf.pallets) {
+    // You need ampersands to loop through the references of the product. Advice from Tristan
+    for (Shelf &_shelf : this->shelves) {
+        for (Pallet &_pallet : _shelf.pallets) {
             // If the pallet has the item we want, we take one from it, until it is empty, or we have gathered enough items
             if (itemName == _pallet.getItemName()) {
                 while (!(_pallet.isEmtpy()) && itemCount > 0) {
@@ -88,7 +88,6 @@ bool Warehouse::pickItems(std::string itemName, int itemCount) {
                 }
                 // If we have gathered all the items we need, we return true
                 if (itemCount == 0) {
-                    std::cout << "final: " << _pallet.getItemCount() << _pallet.getItemName() << std::endl; ///////////
                     return true;
                 }
             }
