@@ -43,10 +43,10 @@ int main() {
     
     Shelf shelf1 = Shelf();
     shelf1.pallets = {
-        Pallet("Apple", 100, 10), 
-        Pallet("Banana", 100, 20), 
-        Pallet("Lemon", 100, 30), 
-        Pallet("Pear", 100, 40)
+        Pallet("Apple", 100, 20), 
+        Pallet("Banana", 100, 30), 
+        Pallet("Lemon", 100, 40), 
+        Pallet("Pear", 100, 10)
     };
 
     Shelf shelf2 = Shelf();
@@ -94,83 +94,129 @@ int main() {
     print_pallet(warehouse.shelves[0].pallets[2]);
     std::cout << std::endl;
 
-    // Reallocate a empty pallet
+    // Reallocate an empty pallet
     std::cout << "Reallocating an empty pallet does work." << std::endl;
     print_pallet(warehouse.shelves[2].pallets[0]);
-    warehouse.shelves[0].pallets[2].reallocateEmptyPallet("Toys", 20);
+    warehouse.shelves[2].pallets[0].reallocateEmptyPallet("Toys", 20);
     print_pallet(warehouse.shelves[2].pallets[0]);
     std::cout << std::endl;
 
     // Take one from an empty pallet
-    std::cout << "" << std::endl;
+    std::cout << "Take one from an empty pallet does nothing." << std::endl;
+    print_pallet(warehouse.shelves[2].pallets[1]);
+    warehouse.shelves[2].pallets[1].takeOne();
+    print_pallet(warehouse.shelves[2].pallets[1]);
     std::cout << std::endl;
 
     // Take one from a non-empty pallet
-    std::cout << "" << std::endl;
+    std::cout << "Take one from a non-empty pallet reduces the stock by one." << std::endl;
+    print_pallet(warehouse.shelves[0].pallets[2]);
+    warehouse.shelves[0].pallets[2].takeOne();
+    print_pallet(warehouse.shelves[0].pallets[2]);
     std::cout << std::endl;
 
-    // Put one on an empty pallet
-    std::cout << "" << std::endl;
+    // Put one on an full pallet
+    std::cout << "Put one on a full pallet does nothing." << std::endl;
+    print_pallet(warehouse.shelves[1].pallets[2]);
+    warehouse.shelves[1].pallets[2].putOne();
+    print_pallet(warehouse.shelves[1].pallets[2]);
     std::cout << std::endl;
 
-    // Put one on a non-empty pallet
-    std::cout << "" << std::endl;
+    // Put one on a non-full pallet
+    std::cout << "Put one on a non-full pallet increases it's stock by one." << std::endl;
+    print_pallet(warehouse.shelves[0].pallets[2]);
+    warehouse.shelves[0].pallets[2].putOne();
+    print_pallet(warehouse.shelves[0].pallets[2]);
     std::cout << std::endl;
 
     // This pallet is full
-    std::cout << "" << std::endl;
+    std::cout << "Returns true if the pallet is full." << std::endl;
+    print_pallet(warehouse.shelves[1].pallets[3]);
+    std::cout << warehouse.shelves[1].pallets[3].isFull() << std::endl;
     std::cout << std::endl;
 
     // This pallet is not full
-    std::cout << "" << std::endl;
+    std::cout << "Return false if the pallet is not full." << std::endl;
+    print_pallet(warehouse.shelves[0].pallets[3]);
+    std::cout << warehouse.shelves[0].pallets[3].isFull() << std::endl;
     std::cout << std::endl;
 
     // This pallet is empty
-    std::cout << "" << std::endl;
+    std::cout << "Returns true when the pallet is empty." << std::endl;
+    print_pallet(warehouse.shelves[2].pallets[3]);
+    std::cout << warehouse.shelves[2].pallets[3].isEmtpy() << std::endl;
     std::cout << std::endl;
 
     // This pallet is not empty
-    std::cout << "" << std::endl;
+    std::cout << "Return false when the pallet is not empty." << std::endl;
+    print_pallet(warehouse.shelves[1].pallets[3]);
+    std::cout << warehouse.shelves[1].pallets[3].isEmtpy() << std::endl;
     std::cout << std::endl;
 
     // Swap two pallets on a shelf
-    std::cout << "" << std::endl;
+    std::cout << "Swap two pallets on a shelf." << std::endl;
+    print_shelf(warehouse.shelves[0]);
+    warehouse.shelves[0].swapPallet(1, 2);
+    print_shelf(warehouse.shelves[0]);
     std::cout << std::endl;
 
     // This shelf is empty
-    std::cout << "" << std::endl;
+    std::cout << "Return true when the shelf is empty." << std::endl;
+    print_shelf(warehouse.shelves[2]);
+    std::cout << warehouse.shelves[2].isEmtpy() << std::endl;
     std::cout << std::endl;
 
     // This shelf is not empty
-    std::cout << "" << std::endl;
+    std::cout << "Return false when the shelf is not empty." << std::endl;
+    print_shelf(warehouse.shelves[1]);
+    std::cout << warehouse.shelves[1].isEmtpy() << std::endl;
     std::cout << std::endl;
 
     // This shelf is full
-    std::cout << "" << std::endl;
+    std::cout << "Return true when the shelf is full." << std::endl;
+    print_shelf(warehouse.shelves[1]);
+    std::cout << warehouse.shelves[1].isFull() << std::endl;
     std::cout << std::endl;
 
     // This shelf is not full
-    std::cout << "" << std::endl;
+    std::cout << "Returns false when the shelf is not full." << std::endl;
+    print_shelf(warehouse.shelves[0]);
+    std::cout << warehouse.shelves[0].isFull() << std::endl;
     std::cout << std::endl;
 
     // Set an employee to busy
-    std::cout << "" << std::endl;
+    std::cout << "Set an employee to busy." << std::endl;
+    print_employee(warehouse.Employees[1]);
+    warehouse.Employees[1].setBusy(true);
+    print_employee(warehouse.Employees[1]);
     std::cout << std::endl;
 
     // Alter whether an employee has a forkliftcertificate
-    std::cout << "" << std::endl;
+    std::cout << "Alter whether an employee has a forkliftcertificate." << std::endl;
+    print_employee(warehouse.Employees[0]);
+    warehouse.Employees[0].setForkliftCertificate(true);
+    print_employee(warehouse.Employees[0]);
     std::cout << std::endl;
 
     // Rearrange a shelf
-    std::cout << "" << std::endl;
+    std::cout << "Rearrange a shelf in ascending order." << std::endl;
+    print_shelf(warehouse.shelves[0]);
+    warehouse.rearrangeShelf(warehouse.shelves[0]);
+    print_shelf(warehouse.shelves[0]);
     std::cout << std::endl;
 
-    // Pick items with enough stock
-    std::cout << "" << std::endl;
+    // Pick items with enough stock                                         ///////Doesnt work
+    std::cout << "Pick 15 bananas when there is enough stock." << std::endl;
+    print_shelf(warehouse.shelves[0]);
+    std::cout << warehouse.pickItems("Banana", 15) << std::endl;
+    print_shelf(warehouse.shelves[0]);
     std::cout << std::endl;
 
     // Pick items with not enough stock
-    std::cout << "" << std::endl;
+    std::cout << "Pick 45 lemons when there is not enough stock." << std::endl;
+    print_shelf(warehouse.shelves[0]);
+    warehouse.pickItems("Lemon", 45);
+    print_shelf(warehouse.shelves[0]);
     std::cout << std::endl;
 
 
