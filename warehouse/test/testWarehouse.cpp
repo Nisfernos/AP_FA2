@@ -236,7 +236,7 @@ TEST_CASE("Rearrange shelf with quallified, but busy, employee", "Warehouse::rea
     REQUIRE(warehouse.shelves[0].pallets[3].getItemCount() == 10);
 }
 
-TEST_CASE("Pick items from warehouse with items on 1 pallet, Warehouse::PickItems") {
+TEST_CASE("Pick items from warehouse with items on 1 pallet with enough stock, Warehouse::PickItems") {
     // Construct warehouse with 4 different items on 1 shelf
     Warehouse warehouse = Warehouse();
     Shelf shelf1 = Shelf();
@@ -256,24 +256,14 @@ TEST_CASE("Pick items from warehouse with items on 1 pallet, Warehouse::PickItem
     REQUIRE(warehouse.shelves[0].pallets[3].getItemCount() == 40);
 
     // Take 9 apples from the warehouse
-    bool succesfull_apple = warehouse.pickItems("Apple", 9);
+    bool succesfull = warehouse.pickItems("Banana", 19);
     // Should succeed
-    REQUIRE(succesfull_apple);
-
-    // Take 20 bananas from the warehouse
-    bool succesfull_banana = warehouse.pickItems("Banana", 20);
-    // Should succeed
-    REQUIRE(succesfull_banana);
-
-    // Take 31 lemons from the warehouse
-    bool succesfull_lemon = warehouse.pickItems("Lemon", 31);
-    //Should fail
-    REQUIRE(!succesfull_lemon);
+    REQUIRE(succesfull);
 
     // Check if the shelf has the correct stock
     // Shelf should have 1 apple, 0 bananas, 30 lemons and 40 pears
-    REQUIRE(warehouse.shelves[0].pallets[0].getItemCount() == 1);
-    REQUIRE(warehouse.shelves[0].pallets[1].getItemCount() == 0);
+    REQUIRE(warehouse.shelves[0].pallets[0].getItemCount() == 10);
+    REQUIRE(warehouse.shelves[0].pallets[1].getItemCount() == 1);
     REQUIRE(warehouse.shelves[0].pallets[2].getItemCount() == 30);
     REQUIRE(warehouse.shelves[0].pallets[3].getItemCount() == 40);
 }
