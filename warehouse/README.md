@@ -15,7 +15,7 @@ It also has main.cpp, and testWarehouse.cpp for testing the functionality of the
 5. Run the code from the "Makefile: project outline".
 
 ## Files
-- folder src:
+- folder src
     - folder include
         - employee.hpp Header file for class Employee
         - pallet.hpp Header file for class Pallet
@@ -27,12 +27,12 @@ It also has main.cpp, and testWarehouse.cpp for testing the functionality of the
     - warehouse.cpp Warehouse class implementation file
 - folder test
     - folder include
-        - catch.hpp: Makes the code testWarehouse.cpp work?
-    - test.cpp: Link between catch.hpp and testWarehouse.cpp?
-    - testWarehouse.cpp: Testing edge cases of the program
-- main.cpp: Shows that the program is working
-- Makefile: The makefile for building and running the main.cpp and test.cpp
-- README.md: Instructions and documentation of the project
+        - catch.hpp Makes the code testWarehouse.cpp work?
+    - test.cpp Link between catch.hpp and testWarehouse.cpp?
+    - testWarehouse.cpp Testing edge cases of the program
+- main.cpp Shows that the program is working
+- Makefile The makefile for building and running the main.cpp and test.cpp
+- README.md Instructions and documentation of the project
 
 
 
