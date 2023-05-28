@@ -44,7 +44,7 @@ int main() {
     Shelf shelf1 = Shelf();
     shelf1.pallets = {
         Pallet("Apple", 100, 20), 
-        Pallet("BananaOwO", 100, 30), 
+        Pallet("Banana", 100, 30), 
         Pallet("Lemon", 100, 40), 
         Pallet("Pear", 100, 10)
     };
@@ -153,8 +153,8 @@ int main() {
     std::cout << warehouse.shelves[1].pallets[3].isEmtpy() << std::endl;
     std::cout << std::endl;
 
-    // Swap two pallets on a shelf
-    std::cout << "Swap two pallets on a shelf." << std::endl;
+    // Swap pallets 2 and three on a shelf
+    std::cout << "Swap pallets two and three on a shelf." << std::endl;
     print_shelf(warehouse.shelves[0]);
     warehouse.shelves[0].swapPallet(1, 2);
     print_shelf(warehouse.shelves[0]);
@@ -205,11 +205,10 @@ int main() {
     print_shelf(warehouse.shelves[0]);
     std::cout << std::endl;
 
-    // Pick items with enough stock                                         ///////Doesnt work
-    std::cout << "Pick 15 bananas when there is enough stock." << std::endl;
+    // Pick items with enough stock
+    std::cout << "Pick 14 bananas when there is enough stock." << std::endl;
     print_shelf(warehouse.shelves[0]);
-    std::cout << warehouse.pickItems("BananaOwO", 14) << std::endl; /////////
-    std::cout << warehouse.shelves[0].pallets[2].getItemCount() << std::endl; /////////
+    std::cout << warehouse.pickItems("Banana", 14) << std::endl;
     print_shelf(warehouse.shelves[0]);
     std::cout << std::endl;
 
