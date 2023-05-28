@@ -8,6 +8,7 @@ Employee::Employee(std::string name_, bool forkliftCertificate_) {
      */
     this->name = name_;
     this->forkliftCertificate = forkliftCertificate_;
+    this->busy = false;
 };
     
 std::string Employee::getName() const {
