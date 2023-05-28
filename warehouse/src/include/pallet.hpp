@@ -4,7 +4,7 @@
 
 class Pallet {
     /**
-     * @brief This class represents a pallet with a single item.
+     * @brief This class represents a pallet with a single item type.
      * @param itemCount : The current amount of items that are on the pallet.
      * @param itenName : The name of the item on the pallet.
      * @param itemCapacity : The maximum amount of items the pallet can contain.

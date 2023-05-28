@@ -3,8 +3,12 @@
 
 class Employee {
     /**
-     * @brief 
-     * @param 
+     * @brief This class represents an employee in warehouse.
+     * @param name The name of the employee.
+     * @param busy If the employee is currently busy.
+     * @param forkliftCertificate Whether the employee has a forkliftCertificate.
+     * You can get the busy status, whether the employee has a forkliftcertificate and the name of the employee.
+     * You can alter the busy boolean, and alter if the employee owns a forkliftcertificate.
      */
 private:
     std::string name;
